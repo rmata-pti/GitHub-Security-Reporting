@@ -34,3 +34,20 @@ cd your-repo-name
 3. Install required packages: 
 
 -pip install -r requirements.txt
+```
+## Usage
+
+1. Update Org and GitHub Personal Access Token
+
+```
+  - Open the script file (gh-report.py) and replace your-personal-access-token with your GitHub Personal Access Token and ORGANIZATION_NAME with your GitHub organization or enter it when prompted
+```
+2. Run the script:
+```
+  - python gh-report.py
+```  
+3. Follow prompts:
+```
+  - Follow the prompts to enter your organization name and select the team you want to process (or choose "All Teams" to process all teams). 
+```
+4. 
