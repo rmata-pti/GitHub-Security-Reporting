@@ -14,15 +14,23 @@ This script fetches security alerts from GitHub repositories for a specified org
 ## Prerequisites
 
 - Python 3.x
-- `requests` library
-- `pandas` library
-- `openpyxl` library
+- requirements.txt
 
 ## Installation
 
 1. Clone this repository:
-2. pip install -r requirements.txt
 
 ```sh
 git clone https://github.com/your-username/your-repo-name.git
 cd your-repo-name
+
+2. Create & Activate Python Virtual Env:
+
+- python -m venv gh-report
+- [Mac] source gh-report/bin/activate
+- [Windows] gh-report\Scripts\activate
+
+
+3. Install required packages: 
+
+-pip install -r requirements.txt
