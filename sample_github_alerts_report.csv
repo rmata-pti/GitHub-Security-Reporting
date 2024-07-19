@@ -1,0 +1,6 @@
+Repository,Alert Type,Alert Number,Description,Severity,State,Created At,Updated At,URL,Package Name,Vulnerable Version Range,Patched Version
+sample_repo1,Code Scanning,1,Cross-Site Scripting in `index.html`,high,open,2024-07-01T12:00:00Z,2024-07-06T12:00:00Z,https://github.com/sample_repo1/issues/1,N/A,N/A,N/A
+sample_repo1,Dependabot,2,Vulnerability in `lodash` library,medium,fixed,2024-07-02T12:00:00Z,2024-07-07T12:00:00Z,https://github.com/sample_repo1/issues/2,lodash,<4.17.21,4.17.21
+sample_repo2,Code Scanning,3,SQL Injection in `db_query` function,critical,open,2024-07-03T12:00:00Z,2024-07-08T12:00:00Z,https://github.com/sample_repo2/issues/3,N/A,N/A,N/A
+sample_repo2,Dependabot,4,Vulnerability in `axios` package,high,fixed,2024-07-04T12:00:00Z,2024-07-09T12:00:00Z,https://github.com/sample_repo2/issues/4,axios,<0.21.1,0.21.1
+sample_repo3,Secret Scanning,5,Exposed API Key,low,open,2024-07-05T12:00:00Z,2024-07-10T12:00:00Z,https://github.com/sample_repo3/issues/5,N/A,N/A,N/A
