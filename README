@@ -21,6 +21,7 @@ This script fetches security alerts from GitHub repositories for a specified org
 ## Installation
 
 1. Clone this repository:
+2. pip install -r requirements.txt
 
 ```sh
 git clone https://github.com/your-username/your-repo-name.git
