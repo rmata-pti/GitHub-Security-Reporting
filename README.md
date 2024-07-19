@@ -23,12 +23,12 @@ This script fetches security alerts from GitHub repositories for a specified org
 ```sh
 git clone https://github.com/your-username/your-repo-name.git
 cd your-repo-name
-
+```
 2. Create & Activate Python Virtual Env:
 
-- python -m venv gh-report
-- [Mac] source gh-report/bin/activate
-- [Windows] gh-report\Scripts\activate
+```python -m venv gh-report```
+```[Mac] source gh-report/bin/activate```
+```[Windows] gh-report\Scripts\activate```
 
 
 3. Install required packages: 
