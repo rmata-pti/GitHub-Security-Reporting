@@ -79,3 +79,7 @@ Processing 2/10: my-org/repo2
 
 Report generated and saved as alerts_report_all_teams_20230716_123456.xlsx
 ```
+## Notes
+
+  - Ensure your GitHub Personal Access Token has the necessary permissions to access the organization's repositories and read security alerts.
+  - The script includes rate limit handling and retry mechanisms to manage GitHub API limitations effectively.
