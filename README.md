@@ -1,6 +1,6 @@
-# GitHub Security Alerts Report
+# GitHub Security Alerts Report by Team
 
-This script fetches security alerts from GitHub repositories for a specified organization and generates a comprehensive report in Excel format. The report includes Code Scanning, Dependabot, and Secret Scanning alerts.
+This script fetches security alerts from GitHub repositories for a specified organization and team(s) and generates a comprehensive report in Excel format. The report includes Code Scanning, Dependabot, and Secret Scanning alerts.
 
 ## Features
 
@@ -15,6 +15,7 @@ This script fetches security alerts from GitHub repositories for a specified org
 
 - Python 3.x
 - requirements.txt
+- Github Teams preconfigured
 
 ## Installation
 
