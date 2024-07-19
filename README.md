@@ -83,3 +83,43 @@ Report generated and saved as alerts_report_all_teams_20230716_123456.xlsx
 
   - Ensure your GitHub Personal Access Token has the necessary permissions to access the organization's repositories and read security alerts.
   - The script includes rate limit handling and retry mechanisms to manage GitHub API limitations effectively.
+
+## Retry Strategy for HTTP Requests
+
+To handle transient issues like network hiccups or temporary server unavailability, the script employs a robust retry strategy for all HTTP requests made to the GitHub API. This is achieved by configuring a custom retry strategy and attaching it to the `requests` session.
+
+### Configuration
+
+The retry strategy is defined as follows:
+
+- **Total Retries**: The script will retry a failed request up to 5 times.
+- **Backoff Factor**: The delay between retries increases exponentially. For example, the delays will be 1 second, 2 seconds, 4 seconds, and so on.
+- **Status Codes**: The retry strategy is triggered for the following HTTP status codes:
+  - `429` (Too Many Requests)
+  - `500` (Internal Server Error)
+  - `502` (Bad Gateway)
+  - `503` (Service Unavailable)
+  - `504` (Gateway Timeout)
+- **Allowed Methods**: The retry strategy is applied to the `HEAD`, `GET`, and `OPTIONS` HTTP methods.
+
+### Implementation
+
+The retry strategy is implemented using the `Retry` and `HTTPAdapter` classes from the `urllib3` and `requests` libraries, respectively.
+
+Here is the relevant code snippet:
+
+```python
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
+
+# Configure retries and backoff strategy
+retry_strategy = Retry(
+    total=5,
+    backoff_factor=1,
+    status_forcelist=[429, 500, 502, 503, 504],
+    allowed_methods=["HEAD", "GET", "OPTIONS"]
+)
+adapter = HTTPAdapter(max_retries=retry_strategy)
+http = requests.Session()
+http.mount("https://", adapter)
+http.mount("http://", adapter)
