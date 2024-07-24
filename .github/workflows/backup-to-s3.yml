@@ -1,0 +1,33 @@
+name: Backup Repository to S3
+
+on:
+  workflow_dispatch:
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up AWS CLI
+        uses: aws-actions/setup-aws-cli@v2
+        with:
+          aws-version: '2.x'
+
+      - name: Assume AWS role
+        id: assume-role
+        uses: aws-actions/aws-assume-role@v1
+        with:
+          role-arn: arn:aws:iam::344686445835:role/GitHubActionsS3BackupRole
+          role-session-name: github-actions-session
+
+      - name: Archive repository
+        run: |
+          REPO_NAME=$(echo "${GITHUB_REPOSITORY}" | awk -F'/' '{print $2}')
+          tar -czf "${REPO_NAME}_backup_$(date +%F_%T).tar.gz" .
+
+      - name: Upload backup to S3
+        run: |
+          REPO_NAME=$(echo "${GITHUB_REPOSITORY}" | awk -F'/' '{print $2}')
+          aws s3 cp "${REPO_NAME}_backup_$(date +%F_%T).tar.gz" s3://pti-github-repo-backups/
