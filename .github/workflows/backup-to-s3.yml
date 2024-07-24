@@ -25,16 +25,17 @@ jobs:
           role-to-assume: arn:aws:iam::344686445835:role/GitHubActionsS3BackupRole
           aws-region: us-east-1
 
-      - name: Create a simple archive
-        run: |
-          tar -czf simple_backup.tar.gz .
-
       - name: Archive repository
         run: |
           REPO_NAME=$(echo "${GITHUB_REPOSITORY}" | awk -F'/' '{print $2}')
-          tar -czf "${REPO_NAME}_backup_$(date +%F_%T).tar.gz" .
+          TIMESTAMP=$(date +%F_%T)
+          BACKUP_FILE="${REPO_NAME}_backup_${TIMESTAMP}.tar.gz"
+          git archive --format=tar.gz -o "$BACKUP_FILE" HEAD
+          echo "Backup file created: $BACKUP_FILE"
 
       - name: Upload backup to S3
         run: |
           REPO_NAME=$(echo "${GITHUB_REPOSITORY}" | awk -F'/' '{print $2}')
-          aws s3 cp "${REPO_NAME}_backup_$(date +%F_%T).tar.gz" s3://pti-github-repo-backups/
+          TIMESTAMP=$(date +%F_%T)
+          BACKUP_FILE="${REPO_NAME}_backup_${TIMESTAMP}.tar.gz"
+          aws s3 cp "$BACKUP_FILE" s3://pti-github-repo-backups/
