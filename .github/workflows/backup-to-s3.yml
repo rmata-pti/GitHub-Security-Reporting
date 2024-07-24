@@ -24,7 +24,11 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::344686445835:role/GitHubActionsS3BackupRole
           aws-region: us-east-1
-      
+
+      - name: Create a simple archive
+        run: |
+          tar -czf simple_backup.tar.gz .
+
       - name: Archive repository
         run: |
           REPO_NAME=$(echo "${GITHUB_REPOSITORY}" | awk -F'/' '{print $2}')
