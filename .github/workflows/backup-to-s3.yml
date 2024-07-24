@@ -15,13 +15,12 @@ jobs:
         with:
           version: 2
 
-      - name: Assume AWS role
-        id: assume-role
-        uses: aws-actions/aws-assume-role@v1
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
         with:
-          role-arn: arn:aws:iam::344686445835:role/GitHubActionsS3BackupRole
-          role-session-name: github-actions-session
-
+          role-to-assume: arn:aws:iam::344686445835:role/GitHubActionsS3BackupRole
+          aws-region: us-east-1
+      
       - name: Archive repository
         run: |
           REPO_NAME=$(echo "${GITHUB_REPOSITORY}" | awk -F'/' '{print $2}')
