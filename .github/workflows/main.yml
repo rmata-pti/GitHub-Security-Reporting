@@ -27,7 +27,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }} # GitHub PAT stored as a secret
       run: |
-        python generate_report.py
+        python gh-report.py
 
     - name: Upload report artifact
       uses: actions/upload-artifact@v3
