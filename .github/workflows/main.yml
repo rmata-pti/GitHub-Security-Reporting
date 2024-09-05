@@ -25,7 +25,7 @@ jobs:
 
     - name: Run the script
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub PAT stored as a secret
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }} # GitHub PAT stored as a secret
       run: |
         python generate_report.py
 
